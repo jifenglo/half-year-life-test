@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7f3ed" />
+  <meta name="description" content="30道题，看看未来半年你的人生剧本主线。非玄学，全正向结果。" />
+  <title>半年主线 · 人生剧本测试</title>
+  <style>
+:root {
+  --ink: #3f4540;
+  --muted: #7e837d;
+  --paper: #fffdf9;
+  --bg: #f4f0e9;
+  --sage: #9cae9d;
+  --sage-deep: #708676;
+  --peach: #d9b5a7;
+  --line: #dfddd5;
+  --shadow: 0 14px 40px rgba(76, 74, 65, .09);
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); }
+body {
+  margin: 0; color: var(--ink); background:
+    radial-gradient(circle at 10% 8%, rgba(217,181,167,.22), transparent 28%),
+    radial-gradient(circle at 92% 90%, rgba(156,174,157,.20), transparent 27%), var(--bg);
+  font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif;
+  min-height: 100vh; min-height: 100svh;
+  -webkit-font-smoothing: antialiased;
+}
+button { font: inherit; }
+.page-shell { width: min(100%, 520px); min-height: 100vh; min-height: 100svh; margin: 0 auto; position: relative; }
+.topbar {
+  height: 54px; display: flex; align-items: center; justify-content: center; gap: 9px;
+  font-size: 13px; letter-spacing: .08em; color: #687168; position: sticky; top: 0; z-index: 10;
+  background: rgba(244,240,233,.88); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(110,116,107,.10);
+}
+.brand-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--peach); box-shadow: 10px 0 0 var(--sage); margin-right: 10px; }
+.screen { display: none; padding: 18px 18px calc(28px + env(safe-area-inset-bottom)); min-height: calc(100svh - 54px); }
+.screen.active { display: flex; flex-direction: column; }
+.paper-card { background: rgba(255,253,249,.95); border: 1px solid rgba(94,101,92,.12); border-radius: 25px; box-shadow: var(--shadow); }
+.cover-screen { justify-content: center; }
+.cover-card { padding: 23px 24px 25px; text-align: center; overflow: hidden; position: relative; }
+.eyebrow { font-family: Georgia, serif; font-size: 10px; letter-spacing: .2em; color: #9a8b7f; }
+.cover-art { height: 122px; position: relative; margin: 8px auto 3px; width: 230px; }
+.sun { position: absolute; width: 64px; height: 64px; left: 83px; top: 25px; border-radius: 50%; background: #ead7bd; opacity: .92; }
+.line { position: absolute; height: 42px; border-top: 1.5px solid #748477; border-radius: 50%; bottom: 7px; }
+.line-a { width: 190px; left: 20px; transform: rotate(4deg); }
+.line-b { width: 145px; left: 44px; bottom: -6px; transform: rotate(-5deg); }
+.leaf { position: absolute; width: 24px; height: 48px; border: 1.5px solid #829383; border-radius: 100% 0 100% 0; }
+.leaf-a { left: 39px; top: 30px; transform: rotate(-34deg); }
+.leaf-b { right: 40px; top: 23px; transform: rotate(55deg) scale(.82); }
+.leaf-c { right: 56px; bottom: 2px; transform: rotate(105deg) scale(.55); }
+.cover-card h1 { font-family: "Songti SC", STSong, serif; font-size: clamp(27px, 7vw, 34px); font-weight: 600; line-height: 1.46; letter-spacing: .04em; margin: 0; color: #424942; }
+.primary-btn, .secondary-btn { width: 100%; border: 0; border-radius: 15px; min-height: 52px; cursor: pointer; transition: transform .15s, opacity .15s; }
+.primary-btn { margin-top: 22px; background: var(--sage-deep); color: white; font-weight: 600; letter-spacing: .05em; box-shadow: 0 8px 18px rgba(87,112,93,.20); }
+.primary-btn span { margin-left: 8px; }
+.primary-btn:active, .secondary-btn:active { transform: scale(.985); }
+.primary-btn:disabled { opacity: .35; cursor: not-allowed; box-shadow: none; }
+.quiz-foot, .disclaimer { color: #a0a29c; font-size: 11px; }
+.quiz-screen { justify-content: center; }
+.quiz-head { display: flex; align-items: center; gap: 13px; margin: 0 3px 17px; }
+.icon-btn { width: 38px; height: 38px; border-radius: 50%; border: 1px solid #d7d6cf; background: rgba(255,255,255,.45); color: #72776f; cursor: pointer; flex: 0 0 auto; }
+.progress-wrap { flex: 1; }
+.progress-label { display: flex; justify-content: space-between; font-size: 11px; color: #868a84; margin-bottom: 7px; }
+.progress-track { height: 4px; border-radius: 999px; background: #deddd6; overflow: hidden; }
+.progress-bar { height: 100%; width: 3.333%; border-radius: inherit; background: linear-gradient(90deg, #b9c4b8, #748b79); transition: width .25s ease; }
+.question-card { padding: 28px 22px 23px; }
+.question-no { color: #aa8f83; font-family: Georgia, serif; font-size: 10px; letter-spacing: .18em; }
+.question-card h2 { font-family: "Songti SC", STSong, serif; font-size: 22px; line-height: 1.6; font-weight: 600; min-height: 70px; margin: 12px 0 22px; }
+.options { display: grid; gap: 11px; }
+.option { width: 100%; min-height: 54px; padding: 12px 13px; border: 1px solid #deddd6; border-radius: 14px; background: #fdfbf7; color: #555b55; display: flex; align-items: center; gap: 12px; text-align: left; cursor: pointer; line-height: 1.45; font-size: 14px; }
+.option-letter { width: 28px; height: 28px; border: 1px solid #c8c9c2; border-radius: 50%; display: grid; place-items: center; font-family: Georgia, serif; font-size: 12px; flex: 0 0 auto; color: #858a83; }
+.option.selected { background: #edf1eb; border-color: #93a695; color: #3f4f43; }
+.option.selected .option-letter { background: #7c927f; border-color: #7c927f; color: white; }
+.next-btn { margin-top: 20px; }
+.quiz-foot { text-align: center; margin: 15px 0 0; }
+.result-screen { padding-top: 22px; }
+.result-card { padding: 23px 22px 25px; text-align: center; position: relative; overflow: hidden; }
+.result-topline { display: flex; justify-content: space-between; color: #96948c; font-size: 10px; letter-spacing: .13em; border-bottom: 1px solid #e8e4dc; padding-bottom: 12px; }
+.result-icon { width: 76px; height: 76px; margin: 24px auto 15px; border-radius: 50%; background: #e7ddd2; position: relative; box-shadow: inset 0 0 0 9px rgba(255,255,255,.38); }
+.result-icon::before { content: "✦"; display: grid; place-items: center; height: 100%; color: white; font-size: 30px; }
+.result-pre { font-size: 12px; color: #9a8a81; margin: 0 0 8px; }
+.result-card h1 { font-family: "Songti SC", STSong, serif; font-size: 29px; letter-spacing: .05em; margin: 0; line-height: 1.4; color: #435048; }
+.soft-divider { display: flex; align-items: center; gap: 9px; color: #c7b4a7; margin: 20px 0 16px; }
+.soft-divider::before, .soft-divider::after { content: ""; height: 1px; background: #e6e0d8; flex: 1; }
+.result-body { text-align: justify; font-size: 14px; line-height: 1.9; color: #5b625c; margin: 0; }
+.advice-box { background: #eef1ec; border-radius: 15px; padding: 15px 16px; margin-top: 18px; text-align: left; }
+.advice-box span { color: #778a79; font-size: 11px; font-weight: 600; letter-spacing: .08em; }
+.advice-box p { margin: 7px 0 0; color: #59645b; line-height: 1.7; font-size: 13px; }
+blockquote { margin: 19px 7px 0; padding: 0; color: #997f72; font-family: "Songti SC", STSong, serif; line-height: 1.7; font-size: 15px; }
+.secondary-btn { margin-top: 20px; border: 1px solid #94a397; color: #68796b; background: transparent; }
+.disclaimer { margin: 14px 0 0; line-height: 1.5; }
+@media (min-width: 540px) { .page-shell { padding: 20px 0; } .topbar { border-radius: 18px 18px 0 0; } .screen { min-height: 720px; } }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+</style>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar" aria-label="页面标题">
+      <span class="brand-dot" aria-hidden="true"></span>
+      <span>半年主线 · 人生剧本测试</span>
+    </header>
+
+    <main id="app">
+      <section id="cover" class="screen cover-screen active" aria-labelledby="cover-title">
+        <div class="paper-card cover-card">
+          <div class="eyebrow">LIFE SCRIPT · NEXT 6 MONTHS</div>
+          <div class="cover-art" aria-hidden="true">
+            <span class="sun"></span><span class="line line-a"></span><span class="line line-b"></span>
+            <span class="leaf leaf-a"></span><span class="leaf leaf-b"></span><span class="leaf leaf-c"></span>
+          </div>
+          <h1 id="cover-title">未来半年，<br />你的人生剧本主线是什么？</h1>
+          <button id="startBtn" class="primary-btn" type="button">翻开我的半年剧本 <span>→</span></button>
+        </div>
+      </section>
+
+      <section id="quiz" class="screen quiz-screen" aria-labelledby="questionText">
+        <div class="quiz-head">
+          <button id="backBtn" class="icon-btn" type="button" aria-label="返回上一题">←</button>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>正在读你的故事</span><span id="progressText">1 / 30</span></div>
+            <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+          </div>
+        </div>
+        <div class="paper-card question-card">
+          <div id="questionNo" class="question-no">QUESTION 01</div>
+          <h2 id="questionText"></h2>
+          <div id="options" class="options" role="radiogroup" aria-labelledby="questionText"></div>
+          <button id="nextBtn" class="primary-btn next-btn" type="button" disabled>下一题 <span>→</span></button>
+        </div>
+        <p class="quiz-foot">慢一点也没关系，诚实比“正确”更重要</p>
+      </section>
+
+      <section id="result" class="screen result-screen" aria-live="polite">
+        <div class="paper-card result-card">
+          <div class="result-topline"><span>你的半年主线</span><span id="resultCode"></span></div>
+          <div id="resultIcon" class="result-icon" aria-hidden="true"></div>
+          <p class="result-pre">未来半年，你的人生剧本是——</p>
+          <h1 id="resultTitle"></h1>
+          <div class="soft-divider"><span>✦</span></div>
+          <p id="resultBody" class="result-body"></p>
+          <div class="advice-box">
+            <span>给你的剧本提示</span>
+            <p id="resultAdvice"></p>
+          </div>
+          <blockquote id="resultQuote"></blockquote>
+          <button id="restartBtn" class="secondary-btn" type="button">重新测试</button>
+          <p class="disclaimer">本测试仅供自我探索与娱乐，不替代专业心理评估</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+const dimensions = ["action", "healing", "order", "relation", "explore", "boundary", "expression", "ease"];
+
+const questions = [
+  ["如果突然多出一个完整的周末，你最想怎么过？", [
+    ["去一个没去过的地方走走", "explore"], ["把房间和待办整理清爽", "order"], ["关掉提醒，好好睡觉发呆", "healing"], ["约喜欢的人吃饭聊天", "relation"]]],
+  ["最近遇到新机会时，你更像哪一种反应？", [
+    ["先试一步，再边走边调整", "action"], ["先确认它是否符合我真正想要的", "boundary"], ["想听听信任的人的看法", "relation"], ["会被新鲜感点亮，想探索看看", "explore"]]],
+  ["当生活有点乱，你最想先找回什么？", [
+    ["稳定的作息与节奏", "order"], ["不被催促的安静空间", "healing"], ["一件能迅速推进的小事", "action"], ["说出感受、被认真听见", "expression"]]],
+  ["哪句话更接近你此刻的心声？", [
+    ["我想把主动权拿回来", "action"], ["我想对自己再温柔一点", "healing"], ["我想把生活过得更有章法", "order"], ["我想看看更大的世界", "explore"]]],
+  ["面对一段消耗你的关系，你更希望自己学会？", [
+    ["坦然说不，不再勉强", "boundary"], ["把真实感受讲清楚", "expression"], ["看见彼此需要，慢慢修复", "relation"], ["不反复责怪自己，轻轻放下", "ease"]]],
+  ["如果半年后收到一封感谢信，你希望它感谢现在的你什么？", [
+    ["谢谢你当时勇敢开始", "action"], ["谢谢你没有再透支自己", "boundary"], ["谢谢你坚持做喜欢的事", "expression"], ["谢谢你允许生活有留白", "ease"]]],
+  ["你心中理想的一天，更像哪幅画面？", [
+    ["按计划完成重要的事，晚上安心休息", "order"], ["遇见意料之外的风景", "explore"], ["和在意的人有真诚连接", "relation"], ["慢慢吃饭、散步，不赶时间", "ease"]]],
+  ["被否定时，你最想拥有哪种能力？", [
+    ["稳定自己，不急着证明", "boundary"], ["把意见变成下一步行动", "action"], ["准确表达我的立场", "expression"], ["消化情绪，不把一句话留太久", "healing"]]],
+  ["最近哪件小事最容易让你觉得“生活值得”？", [
+    ["终于完成拖了很久的事", "action"], ["桌面干净、清单清晰", "order"], ["收到一句真诚的关心", "relation"], ["偶然发现一家喜欢的小店", "explore"]]],
+  ["如果给生活加一个新习惯，你会选？", [
+    ["每天写几句心情", "expression"], ["固定一个只属于自己的休息时段", "healing"], ["每周尝试一件没做过的小事", "explore"], ["睡前整理明天最重要的三件事", "order"]]],
+  ["你更希望别人怎样记住你？", [
+    ["温暖可靠，愿意认真陪伴", "relation"], ["有自己的声音和风格", "expression"], ["清醒坚定，知道什么适合自己", "boundary"], ["松弛有趣，和我相处很舒服", "ease"]]],
+  ["计划突然被打乱时，你通常更需要？", [
+    ["迅速重排优先级", "order"], ["允许自己先缓一缓", "healing"], ["把它当作一次意外支线", "explore"], ["找人聊聊，获得支持", "relation"]]],
+  ["哪种“进步”最让你向往？", [
+    ["从想很多变成做一点", "action"], ["从迎合别人变成尊重自己", "boundary"], ["从憋在心里变成清楚表达", "expression"], ["从事事用力变成张弛有度", "ease"]]],
+  ["独处时，你最容易做什么？", [
+    ["整理思路和接下来的安排", "order"], ["看书、听歌，让情绪慢慢落地", "healing"], ["记录灵感或做点创作", "expression"], ["随心决定，不给时间排太满", "ease"]]],
+  ["面对一个想了很久的愿望，你此刻更愿意？", [
+    ["拆成小步骤，今天就开始", "action"], ["先去体验相关的事，扩大想象", "explore"], ["和重要的人分享，邀请他们见证", "relation"], ["确认这是我的愿望，不是别人的期待", "boundary"]]],
+  ["你理想中的忙碌是什么样？", [
+    ["目标明确，每天都有实在推进", "action"], ["有节奏、有边界，不慌不乱", "order"], ["做能表达自己价值的事情", "expression"], ["忙里也有呼吸和开心的小空隙", "ease"]]],
+  ["哪种变化会让你最有“转运感”？", [
+    ["认识新的朋友和新的可能", "explore"], ["不再为不合适的人和事内耗", "boundary"], ["身体和情绪都慢慢有电", "healing"], ["身边的关系更真诚、更稳", "relation"]]],
+  ["如果心里有一盏灯，你希望它照亮哪里？", [
+    ["下一步真正可走的路", "action"], ["那些被忽略很久的感受", "healing"], ["我与别人之间的温柔连接", "relation"], ["从没看过的新地图", "explore"]]],
+  ["当别人向你提出请求，你更想练习？", [
+    ["先看自己的精力，再回答", "boundary"], ["把时间安排得更合理", "order"], ["真诚说出我能做到的部分", "expression"], ["不必完美帮到，也不因此自责", "ease"]]],
+  ["你最近更想清理掉什么？", [
+    ["反复拖延带来的停滞", "action"], ["堆积的物品与混乱安排", "order"], ["说不出口的委屈", "expression"], ["凡事都要做到最好的紧绷", "ease"]]],
+  ["如果生活是一部电影，你希望接下来的镜头？", [
+    ["主角坚定走向一个新目标", "action"], ["主角在陌生城市打开新地图", "explore"], ["主角与自己慢慢和解", "healing"], ["主角终于说出心里的话", "expression"]]],
+  ["哪一种礼物最像你现在需要的？", [
+    ["一本能帮我梳理生活的手账", "order"], ["一次没有任务的短暂假期", "ease"], ["一个愿意听我慢慢说的人", "relation"], ["一把替我关上消耗之门的钥匙", "boundary"]]],
+  ["当你状态很好时，通常是因为？", [
+    ["知道自己在为什么努力", "action"], ["生活节奏稳定、事情有序", "order"], ["和身边的人彼此理解", "relation"], ["有空间做真实的自己", "expression"]]],
+  ["你更愿意把哪句话写在日历上？", [
+    ["今天也可以先照顾好自己", "healing"], ["去看看，答案也许在路上", "explore"], ["不合适的，我有权拒绝", "boundary"], ["不用赶，你正在自己的时区里", "ease"]]],
+  ["遇到复杂问题，你倾向先做什么？", [
+    ["找一个最小切口行动", "action"], ["列清楚信息和优先级", "order"], ["觉察它真正触发了我什么", "healing"], ["找不同视角，看看还有什么可能", "explore"]]],
+  ["接下来半年，你更想收藏哪类瞬间？", [
+    ["彼此懂得、互相接住的瞬间", "relation"], ["勇敢表达、被看见的瞬间", "expression"], ["尊重自己、不再委屈的瞬间", "boundary"], ["没有安排却很快乐的瞬间", "ease"]]],
+  ["你想把自己的能量优先放在哪里？", [
+    ["一个真正重要的目标", "action"], ["身心的恢复和安稳", "healing"], ["值得经营的人与关系", "relation"], ["未知但让人心动的体验", "explore"]]],
+  ["你觉得“好运”更像什么？", [
+    ["准备好之后抓住机会", "action"], ["日常被照料得妥妥当当", "order"], ["遇到可以坦诚相待的人", "relation"], ["相信自己的感受与选择", "boundary"]]],
+  ["此刻的你，最想把哪种声音调大？", [
+    ["身体说累了，就休息的声音", "healing"], ["好奇心说去试试的声音", "explore"], ["内心真正想说的话", "expression"], ["生活不必时时有答案的声音", "ease"]]],
+  ["最后一题：你希望半年后的自己，眼睛里多一点什么？", [
+    ["完成重要事情后的笃定", "action"], ["被自己好好照顾过的明亮", "healing"], ["走过新路之后的开阔", "explore"], ["不再拧巴之后的轻盈", "ease"]]]
+];
+
+const results = {
+  action: { code: "01 · 启程篇", title: "把想法变成路", subtitle: "关键词：启动 · 推进 · 好事发生在行动里", tags: ["行动回暖", "目标落地", "机会靠近"], body: "接下来的半年，你的主线不是等待一个完美时机，而是让生活重新向前滚动。你会发现，很多困住你的并不是能力不够，而是第一步被想得太重。只要先做一个小动作，后面的路就会一点点显出来。你的“转运感”来自主动：发出那封邮件、开始那个计划、去见想见的人。", advice: "给目标设一个“小到不会失败”的起点。别要求每天都很燃，稳定前进一点点，就是你最扎实的好运。", quote: "你不用一下子看见终点，先让脚下有路。" },
+  healing: { code: "02 · 回春篇", title: "身心慢慢回春", subtitle: "关键词：修复 · 充电 · 温柔地长回来", tags: ["能量回升", "自我照顾", "内心安稳"], body: "未来半年，你的人生剧本会从“照顾自己”开始转场。不是躺平，也不是逃避，而是终于把长期透支的部分慢慢补回来。睡得更踏实、情绪更有出口、对自己不再那么苛刻——这些看似普通的小事，会成为你重新有力量的根。等能量回来，你会自然知道下一步往哪里走。", advice: "把休息当作日程的一部分，而不是完成所有事后的奖励。每周留一段不需要证明价值的时间，给身体和心都松松绑。", quote: "花不是在催促里盛开，你也一样。" },
+  order: { code: "03 · 安序篇", title: "把日子过成靠岸", subtitle: "关键词：整理 · 节奏 · 稳稳的掌控感", tags: ["生活归位", "节奏稳定", "安心积累"], body: "接下来的半年，你会在“把生活理顺”这件事上尝到甜头。不是把每一分钟塞满，而是清楚什么重要、什么可以晚一点。桌面、作息、财务、工作节奏会逐渐归位，心里的噪音也会跟着变小。你需要的好运，其实藏在那些重复却可靠的日常里。", advice: "一次只整理一个角落、一个习惯或一类待办。你的目标不是成为完美的大人，而是搭出一个能接住自己的生活系统。", quote: "日子被轻轻放好，心就有地方安顿。" },
+  relation: { code: "04 · 相遇篇", title: "真心有了回声", subtitle: "关键词：连接 · 陪伴 · 双向奔赴", tags: ["关系升温", "被看见", "温柔互助"], body: "未来半年，你的主线会围绕“真实的连接”展开。你可能遇见聊得来的人，也可能和旧关系重新靠近。重点不是认识多少人，而是你越来越愿意把真实的自己放进关系里，同时也能听见对方。那些双向的关心、踏实的陪伴，会让你知道：很多路不必一个人硬撑。", advice: "把注意力留给会回应你的人。想念就联系，感谢就说出口；同时也允许关系有远近，不必对每个人都用尽全力。", quote: "好的关系不是消耗你，而是让你更像自己。" },
+  explore: { code: "05 · 开图篇", title: "世界为你展开", subtitle: "关键词：探索 · 新鲜感 · 打开人生地图", tags: ["新体验", "视野打开", "灵感来访"], body: "接下来半年，你的人生会因为“去看看”而变得开阔。一次短途出发、一项新技能、一个不同圈层，都可能带来意外的启发。你不需要立刻找到唯一答案，这段时间的任务是收集线索、扩大体验。允许自己绕一点路，因为新的方向常常就藏在那些计划之外。", advice: "每个月安排一次低成本的新体验：换条回家路、学一节体验课、和不同领域的人聊聊天。好奇心会替你打开门。", quote: "当你走出熟悉的地图，风也会带来新消息。" },
+  boundary: { code: "06 · 清醒篇", title: "为自己稳稳撑腰", subtitle: "关键词：边界 · 取舍 · 把选择权拿回来", tags: ["停止内耗", "清醒选择", "自我尊重"], body: "未来半年，你会越来越清楚：温柔不等于委屈自己，懂事也不必以透支为代价。你会学着分辨什么值得投入，什么该礼貌放下。每一次不勉强、不过度解释、尊重自己的感受，都是在把人生的方向盘拿回来。你的好运，是能量终于流向真正重要的人和事。", advice: "答应之前停三秒，先问自己“我愿意吗、我有余力吗”。边界不需要很锋利，清楚、稳定、前后一致就足够。", quote: "拒绝不合适的，才有位置迎接真正想要的。" },
+  expression: { code: "07 · 发光篇", title: "你的声音被听见", subtitle: "关键词：表达 · 创造 · 真实地被看见", tags: ["灵感生长", "自信表达", "个人风格"], body: "接下来的半年，你的主线是“让内在的东西拥有形状”。也许是写作、分享、创作，也许只是更坦然地说出想法和感受。当你不再把所有声音都压回心里，别人才能真正认识你，机会也更容易找到你。你无需模仿谁，你的经验和视角本身就很有价值。", advice: "先稳定输出，再追求漂亮。每周留下一份小作品，或认真表达一次真实想法。被看见的第一步，是允许自己出现。", quote: "你不必更响亮，只要更诚实。" },
+  ease: { code: "08 · 松风篇", title: "轻盈不是偷懒", subtitle: "关键词：松弛 · 留白 · 好事自然靠近", tags: ["卸下紧绷", "生活有光", "自在呼吸"], body: "未来半年，你会慢慢退出“什么都要做好”的紧绷剧本。不是失去上进心，而是更懂得把力气用在值得的地方。你会允许计划有弹性、情绪有阴天、生活偶尔没有答案。奇妙的是，当你不再时时用力证明自己，快乐、灵感和好机会反而更容易靠近。", advice: "每天删掉一件并不重要的事，也给日程留一点空白。真正可持续的努力，应该容得下散步、发呆和临时起意。", quote: "风不赶路，却总能抵达想去的地方。" }
+};
+
+let current = 0;
+let answers = Array(questions.length).fill(null);
+
+const $ = id => document.getElementById(id);
+const screens = [$("cover"), $("quiz"), $("result")];
+function show(id) {
+  screens.forEach(s => s.classList.toggle("active", s.id === id));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function renderQuestion() {
+  const [text, opts] = questions[current];
+  $("questionNo").textContent = `QUESTION ${String(current + 1).padStart(2, "0")}`;
+  $("questionText").textContent = text;
+  $("progressText").textContent = `${current + 1} / ${questions.length}`;
+  $("progressBar").style.width = `${((current + 1) / questions.length) * 100}%`;
+  $("backBtn").style.visibility = current === 0 ? "hidden" : "visible";
+  $("nextBtn").innerHTML = current === questions.length - 1 ? "查看我的人生主线 <span>→</span>" : "下一题 <span>→</span>";
+  $("nextBtn").disabled = answers[current] === null;
+  const box = $("options"); box.innerHTML = "";
+  opts.forEach((opt, i) => {
+    const btn = document.createElement("button");
+    btn.type = "button"; btn.className = `option${answers[current] === i ? " selected" : ""}`;
+    btn.setAttribute("role", "radio"); btn.setAttribute("aria-checked", answers[current] === i ? "true" : "false");
+    btn.innerHTML = `<span class="option-letter">${String.fromCharCode(65 + i)}</span><span>${opt[0]}</span>`;
+    btn.addEventListener("click", () => { answers[current] = i; renderQuestion(); });
+    box.appendChild(btn);
+  });
+}
+
+function calculate() {
+  const scores = Object.fromEntries(dimensions.map(d => [d, 0]));
+  answers.forEach((answer, i) => { if (answer !== null) scores[questions[i][1][answer][1]] += 1; });
+  const max = Math.max(...Object.values(scores));
+  const tied = dimensions.filter(d => scores[d] === max);
+  // 平分时使用答案序列生成稳定索引，避免总偏向同一类型。
+  const seed = answers.reduce((sum, value, i) => sum + (value + 1) * (i + 3), 0);
+  return tied[seed % tied.length];
+}
+
+function renderResult() {
+  const key = calculate(); const r = results[key];
+  $("resultCode").textContent = r.code;
+  $("resultTitle").textContent = r.title;
+  $("resultBody").textContent = r.body;
+  $("resultAdvice").textContent = r.advice;
+  $("resultQuote").textContent = `“${r.quote}”`;
+  const colors = { action: "#ddc4aa", healing: "#c9d7ca", order: "#b9c6bd", relation: "#ddc0bd", explore: "#c7cfda", boundary: "#c9c4d0", expression: "#dfc7b4", ease: "#d7d5bd" };
+  $("resultIcon").style.background = colors[key];
+  show("result");
+}
+
+$("startBtn").addEventListener("click", () => { current = 0; renderQuestion(); show("quiz"); });
+$("backBtn").addEventListener("click", () => { if (current > 0) { current -= 1; renderQuestion(); } });
+$("nextBtn").addEventListener("click", () => { if (answers[current] === null) return; if (current < questions.length - 1) { current += 1; renderQuestion(); window.scrollTo({top: 0, behavior: "smooth"}); } else renderResult(); });
+$("restartBtn").addEventListener("click", () => { answers = Array(questions.length).fill(null); current = 0; show("cover"); });
+
+</script>
+</body>
+</html>
